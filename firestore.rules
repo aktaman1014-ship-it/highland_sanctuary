@@ -1,0 +1,250 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isVerified() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'aktaman1014@gmail.com' ||
+        request.auth.token.email == 'admin@highland.com'
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isOwner(userId) {
+      return isVerified() && request.auth.uid == userId;
+    }
+
+    function isValidUserProfile(data, userId) {
+      return data.keys().hasAll([
+        'uid',
+        'name',
+        'email',
+        'location',
+        'isHost',
+        'hostEarningsInr',
+        'createdAt',
+        'updatedAt'
+      ]) &&
+      data.keys().hasOnly([
+        'uid',
+        'name',
+        'email',
+        'avatar',
+        'phone',
+        'location',
+        'isHost',
+        'hostEarningsInr',
+        'createdAt',
+        'updatedAt'
+      ]) &&
+      data.uid is string && data.uid == userId && isValidId(data.uid) &&
+      data.name is string && data.name.size() >= 1 && data.name.size() <= 100 &&
+      data.email is string && data.email.size() >= 3 && data.email.size() <= 150 &&
+      (!('avatar' in data) || (data.avatar is string && data.avatar.size() <= 250000)) &&
+      (!('phone' in data) || (data.phone is string && data.phone.size() <= 30)) &&
+      data.location is string && data.location.size() >= 1 && data.location.size() <= 60 &&
+      data.isHost is bool &&
+      data.hostEarningsInr is number && data.hostEarningsInr >= 0 &&
+      data.createdAt is timestamp &&
+      data.updatedAt is timestamp;
+    }
+
+    function isValidBooking(data) {
+      return data.keys().hasAll([
+        'id',
+        'userId',
+        'sanctuaryId',
+        'sanctuaryTitle',
+        'location',
+        'state',
+        'artworkTheme',
+        'photoUrl',
+        'checkIn',
+        'nights',
+        'guests',
+        'guestName',
+        'guestEmail',
+        'selectedAddonIds',
+        'totalInr',
+        'status',
+        'bookedAt',
+        'createdAt',
+        'updatedAt'
+      ]) &&
+      data.keys().hasOnly([
+        'id',
+        'userId',
+        'sanctuaryId',
+        'sanctuaryTitle',
+        'location',
+        'state',
+        'artworkTheme',
+        'photoUrl',
+        'checkIn',
+        'checkOut',
+        'nights',
+        'guests',
+        'adults',
+        'children',
+        'guestName',
+        'guestEmail',
+        'selectedAddonIds',
+        'baseAmountInr',
+        'cleaningFeeInr',
+        'highlandFeeInr',
+        'totalInr',
+        'paymentId',
+        'paymentMethod',
+        'status',
+        'bookedAt',
+        'createdAt',
+        'updatedAt'
+      ]) &&
+      data.id is string && data.id.size() >= 1 && data.id.size() <= 64 &&
+      data.userId is string && data.userId == request.auth.uid && isValidId(data.userId) &&
+      data.sanctuaryId is string && data.sanctuaryId.size() >= 1 && data.sanctuaryId.size() <= 80 &&
+      data.sanctuaryTitle is string && data.sanctuaryTitle.size() >= 1 && data.sanctuaryTitle.size() <= 140 &&
+      data.location is string && data.location.size() >= 1 && data.location.size() <= 100 &&
+      data.state is string && data.state.size() >= 1 && data.state.size() <= 60 &&
+      data.artworkTheme is string && data.artworkTheme.size() >= 1 && data.artworkTheme.size() <= 40 &&
+      data.photoUrl is string && data.photoUrl.size() <= 300 &&
+      data.checkIn is string && data.checkIn.size() >= 8 && data.checkIn.size() <= 20 &&
+      (!('checkOut' in data) || (data.checkOut is string && data.checkOut.size() >= 8 && data.checkOut.size() <= 20)) &&
+      data.nights is number && data.nights >= 1 && data.nights <= 30 &&
+      data.guests is number && data.guests >= 1 && data.guests <= 12 &&
+      (!('adults' in data) || (data.adults is number && data.adults >= 1 && data.adults <= 12)) &&
+      (!('children' in data) || (data.children is number && data.children >= 0 && data.children <= 10)) &&
+      data.guestName is string && data.guestName.size() >= 1 && data.guestName.size() <= 100 &&
+      data.guestEmail is string && data.guestEmail.size() >= 3 && data.guestEmail.size() <= 150 &&
+      data.selectedAddonIds is list && data.selectedAddonIds.size() <= 10 &&
+      (data.selectedAddonIds.size() == 0 || (data.selectedAddonIds[0] is string && data.selectedAddonIds[0].size() <= 80)) &&
+      (!('baseAmountInr' in data) || (data.baseAmountInr is number && data.baseAmountInr >= 0)) &&
+      (!('cleaningFeeInr' in data) || (data.cleaningFeeInr is number && data.cleaningFeeInr >= 0)) &&
+      (!('highlandFeeInr' in data) || (data.highlandFeeInr is number && data.highlandFeeInr >= 0)) &&
+      data.totalInr is number && data.totalInr >= 0 &&
+      (!('paymentId' in data) || (data.paymentId is string && data.paymentId.size() >= 1 && data.paymentId.size() <= 64)) &&
+      (!('paymentMethod' in data) || (data.paymentMethod is string && data.paymentMethod.size() >= 1 && data.paymentMethod.size() <= 40 && (data.paymentMethod == 'UPI' || data.paymentMethod == 'Card' || data.paymentMethod == 'Net Banking' || data.paymentMethod == 'Pay at Property'))) &&
+      data.status is string && (data.status == 'Confirmed' || data.status == 'Cancelled') &&
+      data.bookedAt is string && data.bookedAt.size() >= 8 && data.bookedAt.size() <= 20 &&
+      data.createdAt is timestamp &&
+      data.updatedAt is timestamp;
+    }
+
+    function isValidSaved(data) {
+      return data.keys().hasAll(['userId', 'sanctuaryId', 'savedAt']) &&
+      data.keys().hasOnly(['userId', 'sanctuaryId', 'savedAt']) &&
+      data.userId is string && data.userId == request.auth.uid && isValidId(data.userId) &&
+      data.sanctuaryId is string && isValidId(data.sanctuaryId) && data.sanctuaryId.size() <= 80 &&
+      data.savedAt is timestamp;
+    }
+
+    function isValidActivityEvent(data) {
+      return data.keys().hasAll(['id', 'userId', 'type', 'message', 'state', 'createdAt']) &&
+      data.keys().hasOnly(['id', 'userId', 'type', 'message', 'state', 'createdAt']) &&
+      data.id is string && isValidId(data.id) && data.id.size() <= 80 &&
+      data.userId is string && data.userId == request.auth.uid && isValidId(data.userId) &&
+      data.type is string && (data.type == 'save' || data.type == 'booking' || data.type == 'signup' || data.type == 'profile') &&
+      data.message is string && data.message.size() >= 1 && data.message.size() <= 200 &&
+      data.state is string && data.state.size() >= 1 && data.state.size() <= 60 &&
+      data.createdAt is timestamp;
+    }
+
+    // Users Collection (strict PII isolation with Admin read)
+    match /users/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isValidId(userId) &&
+        isOwner(userId) &&
+        isValidUserProfile(incoming(), userId) &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(userId) &&
+        isOwner(userId) &&
+        isValidUserProfile(incoming(), userId) &&
+        incoming().uid == existing().uid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'name',
+          'avatar',
+          'phone',
+          'location',
+          'isHost',
+          'hostEarningsInr',
+          'updatedAt'
+        ]);
+      allow delete: if false;
+    }
+
+    // Bookings Collection
+    match /bookings/{bookingId} {
+      allow get: if isValidId(bookingId) && isVerified() && (existing().userId == request.auth.uid || isAdmin());
+      allow list: if isAdmin() || (isVerified() && resource.data.userId == request.auth.uid);
+      allow create: if isValidId(bookingId) &&
+        isVerified() &&
+        isValidBooking(incoming()) &&
+        incoming().status == 'Confirmed' &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(bookingId) &&
+        isVerified() &&
+        isValidBooking(incoming()) &&
+        existing().userId == request.auth.uid &&
+        incoming().userId == existing().userId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        existing().status == 'Confirmed' &&
+        incoming().status == 'Cancelled' &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']);
+      allow delete: if false;
+    }
+
+    // Saved Sanctuaries Collection
+    match /saved/{savedId} {
+      allow get: if isValidId(savedId) && isVerified() && (existing().userId == request.auth.uid || isAdmin());
+      allow list: if isAdmin() || (isVerified() && resource.data.userId == request.auth.uid);
+      allow create: if isValidId(savedId) &&
+        isVerified() &&
+        isValidSaved(incoming()) &&
+        incoming().savedAt == request.time;
+      allow update: if false;
+      allow delete: if isValidId(savedId) && isVerified() && existing().userId == request.auth.uid;
+    }
+
+    // Activity Feed Collection
+    match /activity/{eventId} {
+      allow get: if isValidId(eventId) && isAdmin();
+      allow list: if isAdmin();
+      allow create: if isValidId(eventId) &&
+        isVerified() &&
+        isValidActivityEvent(incoming()) &&
+        incoming().createdAt == request.time;
+      allow update, delete: if false;
+    }
+  }
+}

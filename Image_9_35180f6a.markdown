@@ -1,0 +1,207 @@
+---
+name: Lush Highland Sanctuary
+colors:
+  surface: '#f6faf7'
+  surface-dim: '#d7dbd8'
+  surface-bright: '#f6faf7'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#f1f5f2'
+  surface-container: '#ebefec'
+  surface-container-high: '#e5e9e6'
+  surface-container-highest: '#dfe3e1'
+  on-surface: '#181d1b'
+  on-surface-variant: '#404944'
+  inverse-surface: '#2d3130'
+  inverse-on-surface: '#eef2ef'
+  outline: '#707973'
+  outline-variant: '#c0c9c2'
+  surface-tint: '#336852'
+  primary: '#002e1f'
+  on-primary: '#ffffff'
+  primary-container: '#0b4632'
+  on-primary-container: '#7db49a'
+  inverse-primary: '#9bd2b7'
+  secondary: '#9d4300'
+  on-secondary: '#ffffff'
+  secondary-container: '#fd761a'
+  on-secondary-container: '#5c2400'
+  tertiary: '#002e18'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#004728'
+  on-tertiary-container: '#61b985'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#b6efd3'
+  primary-fixed-dim: '#9bd2b7'
+  on-primary-fixed: '#002115'
+  on-primary-fixed-variant: '#19503b'
+  secondary-fixed: '#ffdbca'
+  secondary-fixed-dim: '#ffb690'
+  on-secondary-fixed: '#341100'
+  on-secondary-fixed-variant: '#783200'
+  tertiary-fixed: '#9cf6bc'
+  tertiary-fixed-dim: '#80d9a1'
+  on-tertiary-fixed: '#002110'
+  on-tertiary-fixed-variant: '#00522f'
+  background: '#f6faf7'
+  on-background: '#181d1b'
+  surface-variant: '#dfe3e1'
+typography:
+  headline-xl:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 40px
+    fontWeight: '700'
+    lineHeight: 48px
+    letterSpacing: -0.02em
+  headline-xl-mobile:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 30px
+    fontWeight: '700'
+    lineHeight: 36px
+    letterSpacing: -0.02em
+  headline-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 32px
+    fontWeight: '700'
+    lineHeight: 40px
+    letterSpacing: -0.015em
+  headline-lg-mobile:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 24px
+    fontWeight: '700'
+    lineHeight: 32px
+    letterSpacing: -0.015em
+  headline-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 22px
+    fontWeight: '600'
+    lineHeight: 28px
+    letterSpacing: -0.01em
+  headline-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 18px
+    fontWeight: '600'
+    lineHeight: 24px
+    letterSpacing: 0em
+  body-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 16px
+    fontWeight: '400'
+    lineHeight: 26px
+    letterSpacing: 0em
+  body-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 14px
+    fontWeight: '400'
+    lineHeight: 22px
+    letterSpacing: 0em
+  body-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 12px
+    fontWeight: '400'
+    lineHeight: 18px
+    letterSpacing: 0.01em
+  label-lg:
+    fontFamily: Inter
+    fontSize: 14px
+    fontWeight: '600'
+    lineHeight: 20px
+    letterSpacing: 0.01em
+  label-md:
+    fontFamily: Inter
+    fontSize: 12px
+    fontWeight: '600'
+    lineHeight: 16px
+    letterSpacing: 0.02em
+  label-sm:
+    fontFamily: Inter
+    fontSize: 10px
+    fontWeight: '600'
+    lineHeight: 14px
+    letterSpacing: 0.04em
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
+spacing:
+  gutter: 1rem
+  gutter-mobile: 0.75rem
+  margin: 1.5rem
+  margin-mobile: 1rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2.5rem
+---
+
+## Brand & Style
+The design system channels the untouched, misty landscapes, living root bridges, and sacred groves of North East India into a high-end, immersive hospitality interface. Designed for discerning experiential travelers, eco-tourists, and cultural explorers, the visual tone balances editorial calm with rugged geographical energy. 
+
+The aesthetic synthesizes modern soft minimalism with refined organic glassmorphism. Surfaces emulate mist-cleared vistas through subtle frosted layers, fluid edge geometry, and breathable editorial white space. Imagery anchors every screen, while restrained chrome elements yield stage presence to photography, local artisan narratives, and curated homestays.
+
+## Colors
+The palette extracts its vitality directly from the biodiversity and evening skies of the Seven Sister states.
+
+- **Primary (`#0B4632` & `#137547`):** Deep rainforest emeralds anchor the core navigation, dominant headers, primary actions, and brand presence. These grounding tones establish reliability and ecological harmony.
+- **Secondary Accent (`#F97316` & `#EA580C`):** Radiant marigold accents mirror Himalayan sunsets and local ceremonial textiles. Use sparingly for booking conversions, verified host status, price tags, and urgent stateful indicators.
+- **Neutrals & Surfaces (`#F8F9FA` to `#F1F5F2`):** Warm limestone and soft tea-garden mist establish an airy, tactile backdrop that prevents the clinical chill of stark pure white.
+- **Typography & Text (`#111827` to `#1E293B`):** Deep charcoal slate preserves crisp contrast across all daylight outdoor conditions without harsh pure black fatigue.
+
+## Typography
+Plus Jakarta Sans delivers structural warmth with open apertures and contemporary geometric curves, providing an inviting tone for titles and discovery flows. Inter serves as the utilitarian companion for labels, tags, meta indicators, and numerical readouts, delivering instant legibility at compressed mobile scales. 
+
+Headlines utilize tightened letter-spacing to command focus over immersive media. Body copy maintains generous line heights to facilitate effortless editorial browsing of trail notes, cultural etiquette tips, and homestay descriptions.
+
+## Layout & Spacing
+The layout follows a fluid-column paradigm optimized for mobile-first handheld exploration, expanding into disciplined multi-column grids on tablets and desktop views.
+
+- **Mobile Viewports (<640px):** Employs an edge-to-edge canvas with `1rem` outer margins. Full-bleed carousel cards allow edge peeking, nudging horizontal thumb discovery. Sticky booking bars pin to bottom safe areas.
+- **Tablet / Large Screens (>=768px):** Expands to an 8-column and 12-column structure with `1.5rem` outer margins and dynamic column gutters, pairing map viewports alongside continuous stay feeds.
+- **Vertical Spacing Scale:** Strictly adheres to an 8pt structural rhythm. Compact groupings (ratings, titles, host tags) use `space-xs` and `space-sm`, while semantic block divisions rely on `space-lg` and `space-xl`.
+
+## Elevation & Depth
+Depth is communicated through ambient organic diffusion and misty glass surfaces rather than dense drop shadows.
+
+- **Frosted Glass (Surface Overlays):** Interactive floating controls, navigation bars, and image badges utilize an ambient glass effect: `background: rgba(248, 249, 250, 0.72)` paired with `backdrop-filter: blur(16px)` and an ultra-fine border of `rgba(255, 255, 255, 0.4)`. In dark contextual states, tint shifts to `rgba(11, 70, 50, 0.65)`.
+- **Soft Ambient Shadows:** Grounded cards use multi-stop diffuse shadows tinted with deep emerald slate (`rgba(11, 70, 50, 0.06)`) with a 16px to 24px blur radius, removing all harsh black under-casts.
+- **Layering Hierarchy:** 
+  1. Base canvas: Soft stone mist neutral (`#F1F5F2`).
+  2. Base cards: Crisp pure white (`#FFFFFF`) with 1px border `rgba(11, 70, 50, 0.05)`.
+  3. Floating controls & bottom sheets: Frosted glass tiers elevated above scrolling media planes.
+
+## Shapes
+The shape philosophy takes cues from rounded river pebbles, handwoven bamboo structures, and organic highland terrain. 
+
+Standard components (cards, sheet modals, input surfaces) adopt a refined 0.5rem to 1rem radius (`roundedness: 2`). Floating micro-interactions, amenity chips, status indicators, and booking CTAs utilize full pill silhouettes (`rounded-full`) to offer inviting, tactile targets for mobile thumb interactions.
+
+## Components
+
+- **Buttons:**
+  - *Primary Action:* Deep forest emerald (`#0B4632`) filled background, pure white label, pill-shaped, subtle forward-depth ambient green glow on hover/active states.
+  - *Accent Conversion (Book Now / Instant Reserve):* Vibrant sunset marigold (`#F97316`) fill with high-contrast white typography for instant visual priority.
+  - *Secondary / Ghost:* Transparent fill with subtle emerald stroke (`#0B4632`, 1.5px) or frosted glass backing when positioned over scenic photography.
+
+- **Immersive Travel Cards:**
+  - Vertical layout with a 4:3 or 1:1 rounded image container, edge-to-edge photo carousel with discreet micro-dot pagination.
+  - Floating pill badge at top-left with frosted glass backing denoting curated categories ("Monastery Stay", "Bamboo Cottage", "Living Root Trail").
+  - Top-right floating circle icon for saved favorites with subtle bounce haptic feedback.
+  - Content footer: Bold price typography, star rating with dark charcoal glyphs, and secondary location meta in subdued slate.
+
+- **Chips & Filters:**
+  - Fully rounded pills (`9999px`). Unselected state: Soft limestone background with quiet charcoal text. Selected state: Deep emerald fill with crisp white text, accompanied by smooth scale transitions.
+
+- **Form Fields & Search Bar:**
+  - Search modules borrow from modern floating travel docks: an elevated pill enclosure divided into distinct semantic segments ("Where in NE", "Dates", "Experiences") with subtle vertical divider strokes (`rgba(17, 24, 39, 0.08)`).
+  - Text input inputs feature soft cream fills (`#F8F9FA`), turning into a 1.5px deep emerald border on active focus without loud outer halo rings.
+
+- **Checkboxes & Radios:**
+  - Custom rounded checkbox controls (0.25rem corner) and circular radios with animated internal emerald fill and crisp white tick checkmarks.
+
+- **Experience & Host Narrative Tiles:**
+  - Horizontal editorial cards integrating host tribal lineage badges, certified eco-guide stamps, and weather indicators suited for mountain terrain.

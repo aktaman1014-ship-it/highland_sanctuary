@@ -1,0 +1,8 @@
+{
+  "name": "Highland Sanctuary",
+  "description": "Curated experiential homestays, monastery retreats, and living root trails across North East India.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
